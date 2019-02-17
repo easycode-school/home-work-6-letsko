@@ -1,0 +1,54 @@
+<form name="{{ postService.postFormName }}" 
+      class="mb-5" 
+      #postForm="ngForm" 
+      (ngSubmit)="(postService.postFormName === 'submit') ? postService.submitPost(postForm) : onEdit(postForm)">
+    <div class="row d-flex justify-content-center form-title">
+        <h3 class="text-secondary">Create new post!</h3>
+    </div>
+    <!-- / div.row d-flex justify-content-center form-title -->
+    <div class="form-group row">
+        <label for="title" class="col-2 col-form-label text-center text-secondary"><h4>Title</h4></label>
+        <div class="col-10">
+            <input type="text" 
+                   class="form-control" 
+                   id="title" 
+                   placeholder="Enter post title"
+                   name="title"
+                   [(ngModel)]="title"
+                   required>
+        </div>
+        <!-- / div.col-10 -->
+    </div>
+    <!-- / div.form-group row" -->
+    <div class="form-group row">
+        <label for="body" class="col-2 col-form-label text-center text-secondary"><h4>Text</h4></label>
+        <div class="col-10">
+            <textarea class="form-control" 
+                      id="body" 
+                      rows="2" 
+                      placeholder="Enter post text"
+                      name="body"
+                      [(ngModel)]="body" 
+                      required>
+            </textarea>
+        </div>
+        <!-- / div.col-10 -->
+    </div>
+    <!-- / div.form-group row -->
+    <div class="row d-flex justify-content-center">
+        <button type="submit" 
+                class="btn btn-outline-secondary col-3 col-md-2" 
+                [disabled]="postForm.invalid && postService.buttonName === 'Create'">{{ postService.buttonName }}
+        </button>
+        <button type="reset" 
+                class="btn btn-outline-secondary ml-2 col-3 col-md-2" 
+                *ngIf="postService.postFormName === 'submit' ">Clear
+        </button>
+        <button type="button" 
+                class="btn btn-outline-secondary ml-2 col-3 col-md-2" 
+                *ngIf="postService.postFormName === 'edit' " 
+                (click)="onCansel(postForm)">Cansel
+        </button>
+    </div>
+    <!-- / div.row d-flex justify-content-center -->
+</form>
