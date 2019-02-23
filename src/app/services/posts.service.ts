@@ -18,8 +18,7 @@ export class PostsService {
     id: 0,
     userId: '',
     title: '',
-    body: '',
-    comments: []
+    body: ''
   };
   private _currentPostSource = new BehaviorSubject(this._currentPost);
   public currentPostObservableSubject = this._currentPostSource.asObservable();
@@ -105,7 +104,7 @@ export class PostsService {
     };
 
     this.requestsService.sendPost(newPost).subscribe((post: Post) => {
-      this.addPost(newPost);
+      this.addPost(post);
     });
   }
 
@@ -140,7 +139,7 @@ export class PostsService {
   /**
    * deletePost:
    *    1. Отправляет запрос к серверу на удаление поста;
-   *    2. Удаляет пост из массива постов;
+   *    2. Вырезает пост из массива постов;
    *    3. Распространяет событие обновления массива постов на подписчиков.
    * @param postId - id удаляемого поста
    */

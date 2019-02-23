@@ -43,9 +43,18 @@ export class FormComponent implements OnInit {
 
   /**
    * onCansel - сбрасывает форму и вызывает метод для обновлния параметров формы в разметке
+   * @param form - объект формы
    */
   private onCansel(form: NgForm) {
     form.reset();
     this.postService.changeFormOptions();
+  }
+
+  /**
+   * onClear - очищает поля формы
+   * @param form - объект формы
+   */
+  private onClear(form: NgForm) {
+    form.reset();
   }
 }

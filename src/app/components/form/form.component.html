@@ -40,9 +40,10 @@
                 class="btn btn-outline-secondary col-3 col-md-2" 
                 [disabled]="postForm.invalid && postService.buttonName === 'Create'">{{ postService.buttonName }}
         </button>
-        <button type="reset" 
+        <button type="button" 
                 class="btn btn-outline-secondary ml-2 col-3 col-md-2" 
-                *ngIf="postService.postFormName === 'submit' ">Clear
+                *ngIf="postService.postFormName === 'submit' "
+                (click)="onClear(postForm)">Clear
         </button>
         <button type="button" 
                 class="btn btn-outline-secondary ml-2 col-3 col-md-2" 
