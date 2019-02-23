@@ -3,12 +3,12 @@
         <h5 class="card-title">Post title: {{ post.title }}</h5>
         <h6 class="card-subtitle mb-2 text-muted">Post owner: {{ post.userId }}. Post id: {{ post.id }}</h6>
         <p class="card-text"><b>Post text: </b>{{ post.body }}</p>
-        <button type="button" class="btn btn-outline-primary" (click)="postService.onEditPost(post)">Edit</button>
-        <button type="button" class="btn btn-outline-primary ml-1" (click)="postService.deletePost(post.id)">Delete</button>
+        <button type="button" class="btn btn-outline-primary" (click)="onEditPost(post)" *ngIf="!postService.editingStatus">Edit</button>
+        <button type="button" class="btn btn-outline-primary ml-1" (click)="onDeletePost(post)">Delete</button>
         <button class="btn btn-outline-primary ml-1" type="button" (click)="onCommentsToggle(post.id)">{{ postCommentState ? "Hide coments" : "Show comments..." }}</button>
         <div class="post-comments mt-3" *ngIf="postCommentState">
-            <div class="card" >
-                <ul class="list-group list-group-flush" *ngFor="let comment of post.comments">
+            <div class="card">
+                <ul class="list-group list-group-flush" *ngFor="let comment of comments">
                     <li class="list-group-item">
                         <p>
                             <b>#{{ comment.id }} Comment title:</b> {{ comment.name }} <br>

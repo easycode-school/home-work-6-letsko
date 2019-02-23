@@ -8,20 +8,17 @@ import { Post } from './../../interfaces/post';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-  public posts: Post[] = [];
+  public posts: Post[] = this.postService.posts;
   constructor(
     public postService: PostsService
   ) { }
 
   /**
-   * Инициализирует посты в PostService и забирает их в компоненту после инициализации.
+   * Получает массив постов в компоненту
    */
   ngOnInit() {
-    this.postService.initPosts();
-    this.postService.postsObservableSubject.subscribe((data: Post[]) => {
-      this.posts = data;
+    this.postService.getPosts().subscribe((posts: Post[]) => {
+      this.posts = posts;
     }, (err) => console.log(err));
-
-    this.postService.initComments();
   }
 }

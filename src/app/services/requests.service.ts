@@ -3,14 +3,16 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Post } from './../interfaces/post';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RequestsService {
   private _apiUrl: string = environment.apiUrl;
+
   constructor(
-    private _http: HttpClient
+    private _http: HttpClient,
 
   ) { }
 
@@ -21,11 +23,11 @@ export class RequestsService {
     return this._http.get(`${this._apiUrl}/posts`);
   }
 
-  /**
+  /**.sendPost
    * getComments- делает запрос к серверу на получение массива всех комментариев
    */
-  public getComments(): Observable<Object> {
-    return this._http.get(`${this._apiUrl}/posts/1/comments`);
+  public getComments(id: number): Observable<Object> {
+    return this._http.get(`${this._apiUrl}/comments?postId=${id}`);
   }
 
   /**
